@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4k3yrm7yl3ip"]
+
+[ext_resource type="Script" uid="uid://3vo3r2f76pfb" path="res://scripts/shaders_101.gd" id="1_0gl5d"]
+[ext_resource type="Shader" uid="uid://dfqrk0myro5gr" path="res://shaders/my_first_shader.gdshader" id="1_otc7t"]
+[ext_resource type="Texture2D" uid="uid://batffyuvosav6" path="res://icon.svg" id="2_0gl5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooy42"]
+shader = ExtResource("1_otc7t")
+shader_parameter/velocity_potency = 1.0
+shader_parameter/sprite_color = Color(0, 1, 1, 1)
+shader_parameter/color1 = Color(0.89411765, 0.9137255, 0, 1)
+shader_parameter/color2 = Color(0, 0, 0.9764706, 1)
+shader_parameter/color3 = Color(0, 1, 1, 1)
+shader_parameter/color4 = Color(1, 0, 1, 1)
+
+[node name="Shaders101" type="Node2D"]
+script = ExtResource("1_0gl5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ooy42")
+position = Vector2(515, 285)
+texture = ExtResource("2_0gl5d")
