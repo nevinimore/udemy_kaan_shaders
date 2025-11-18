@@ -349,27 +349,6 @@ _data = {
 shader = ExtResource("13_hyy88")
 shader_parameter/mask_texture = ExtResource("14_v7i2p")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ir1eb"]
-seed = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ow30b"]
-noise = SubResource("FastNoiseLite_ir1eb")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_mb2c8"]
-seed = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_70r4n"]
-noise = SubResource("FastNoiseLite_mb2c8")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb2c8"]
-shader = ExtResource("16_ir1eb")
-shader_parameter/noise_texture1 = SubResource("NoiseTexture2D_ow30b")
-shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_70r4n")
-shader_parameter/offset1 = Vector2(0.1, 0.1)
-shader_parameter/offset2 = Vector2(0.1, 0.1)
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ow30b"]
 seed = 1
 frequency = 0.0101
@@ -389,6 +368,29 @@ shader = ExtResource("17_ow30b")
 shader_parameter/noise_texture1 = SubResource("NoiseTexture2D_mb2c8")
 shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_t7i51")
 shader_parameter/smoke_density = 0.499999988824
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ir1eb"]
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ow30b"]
+noise = SubResource("FastNoiseLite_ir1eb")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mb2c8"]
+seed = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_70r4n"]
+noise = SubResource("FastNoiseLite_mb2c8")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mb2c8"]
+shader = ExtResource("16_ir1eb")
+shader_parameter/noise_texture1 = SubResource("NoiseTexture2D_ow30b")
+shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_70r4n")
+shader_parameter/distortion_strenght = -0.024999953687499965
+shader_parameter/distortion_velocity = 0.10000000149012
+shader_parameter/offset1 = Vector2(0.1, 0.1)
+shader_parameter/offset2 = Vector2(0.1, 0.1)
 
 [node name="CommonTechniques" type="Node2D"]
 script = ExtResource("1_0ugy3")
@@ -452,16 +454,22 @@ position = Vector2(347, 323)
 scale = Vector2(3, 3)
 texture = ExtResource("15_ir1eb")
 
-[node name="Distortion" type="Sprite2D" parent="."]
-visible = false
+[node name="DistortionSmoke" type="Sprite2D" parent="."]
+z_index = 999
+material = SubResource("ShaderMaterial_70r4n")
+position = Vector2(1298, 342)
+texture = ExtResource("10_luoof")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer2"]
+z_index = 999
+copy_mode = 2
+
+[node name="Distortion" type="Sprite2D" parent="CanvasLayer2/BackBufferCopy"]
 z_index = 800
 texture_repeat = 2
 material = SubResource("ShaderMaterial_mb2c8")
 position = Vector2(1292, 369)
-scale = Vector2(9.921633, 7.4665813)
-texture = ExtResource("10_luoof")
-
-[node name="DistortionSmoke" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_70r4n")
-position = Vector2(1298, 342)
+scale = Vector2(10.8864, 6.394138)
 texture = ExtResource("10_luoof")

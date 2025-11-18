@@ -5,7 +5,7 @@ uniform sampler2D noise_texture2: repeat_enable;
 
 uniform float smoke_density: hint_range(0.01, 1.0, 0.01) = 0.2;
 
-uniform sampler2D screen_texture: hint_screen_texture, repeat_enable;
+uniform sampler2D screen_texture: hint_screen_texture, repeat_enable, filter_nearest;
 
 void fragment() {
 	
